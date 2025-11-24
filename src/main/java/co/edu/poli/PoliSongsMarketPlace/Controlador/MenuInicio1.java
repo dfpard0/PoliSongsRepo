@@ -5,12 +5,12 @@
 package co.edu.poli.PoliSongsMarketPlace.Controlador;
 
  
-import java.awt.Button;
-import java.awt.event.ActionEvent;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 public class MenuInicio1 {

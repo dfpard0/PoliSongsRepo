@@ -32,7 +32,8 @@
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
-            <version>${javafx.version}</version>
+            <version>22.0.2</version>
+            <type>jar</type>
         </dependency>
     </dependencies>
     
