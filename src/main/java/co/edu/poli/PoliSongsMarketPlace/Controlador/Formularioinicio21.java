@@ -4,11 +4,14 @@
  */
 package co.edu.poli.PoliSongsMarketPlace.Controlador;
 
+import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javax.print.DocFlavor.URL;
 
 public class Formularioinicio21 {
 
@@ -19,7 +22,7 @@ public class Formularioinicio21 {
     private Button Iniciar;
 
     @FXML
-    private ComboBox<?> Rol;
+    private ComboBox<String> Rol;
 
     @FXML
     private TextField Usuario;
@@ -27,6 +30,10 @@ public class Formularioinicio21 {
     @FXML
     void Click(ActionEvent event) {
 
+    }
+    
+    public void initialize (URL url, ResourceBundle resourceBundle){
+        Rol.setItems(FXCollections.observableArrayList("Comprador", "Vendedor", "Ambas"));
     }
 
 }
