@@ -4,10 +4,46 @@
  */
 package co.edu.poli.PoliSongsMarketPlace.Controlador;
 
-/**
- *
- * @author Pardo
- */
+ 
+import java.awt.Button;
+import java.awt.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
 public class MenuInicio1 {
     
+
+    @FXML
+    private Button BotonInicio;
+
+    @FXML
+    private Button BotonRegistro;
+
+    @FXML
+    void inicio(ActionEvent event) throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource("Formularioinicio21.fxml"));
+
+        // Obtener la ventana actual
+        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+
+        // Cambiar la escena
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    @FXML
+    void registro(ActionEvent event)throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("FormularioRegistro22.fxml"));
+
+        // Obtener la ventana actual
+        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+
+        // Cambiar la escena
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
 }
