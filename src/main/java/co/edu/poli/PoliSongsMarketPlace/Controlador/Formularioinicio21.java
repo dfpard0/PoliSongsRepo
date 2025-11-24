@@ -4,10 +4,29 @@
  */
 package co.edu.poli.PoliSongsMarketPlace.Controlador;
 
-/**
- *
- * @author Pardo
- */
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
+
 public class Formularioinicio21 {
-    ////?????
+
+    @FXML
+    private TextField Contraseña;
+
+    @FXML
+    private Button Iniciar;
+
+    @FXML
+    private ComboBox<?> Rol;
+
+    @FXML
+    private TextField Usuario;
+
+    @FXML
+    void Click(ActionEvent event) {
+
+    }
+
 }
