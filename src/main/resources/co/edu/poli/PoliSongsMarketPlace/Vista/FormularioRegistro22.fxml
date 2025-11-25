@@ -10,7 +10,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.poli.PoliSongsMarketPlace.Controlador.FormularioRegistro22">
    <children>
-      <Button fx:id="Iniciar" layoutX="378.0" layoutY="284.0" mnemonicParsing="false" onAction="#Click" prefHeight="31.0" prefWidth="104.0" style="-fx-background-color: #0F385A;" text="Guardar" textFill="WHITE">
+      <Button fx:id="btnGuardar" layoutX="378.0" layoutY="284.0" mnemonicParsing="false" onAction="#ClickGuardarUsuario" prefHeight="31.0" prefWidth="104.0" style="-fx-background-color: #0F385A;" text="Guardar" textFill="WHITE">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></Button>
@@ -27,5 +27,10 @@
          <font>
             <Font name="System Bold" size="37.0" />
          </font></Label>
+      <Button fx:id="Iniciar1" layoutX="24.0" layoutY="354.0" mnemonicParsing="false" onAction="#ClickVolver" prefHeight="31.0" prefWidth="104.0" style="-fx-background-color: #0F385A;" text="Volver" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

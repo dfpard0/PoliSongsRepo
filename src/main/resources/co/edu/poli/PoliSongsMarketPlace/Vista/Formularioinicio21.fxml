@@ -11,7 +11,7 @@
    <children>
       <TextField fx:id="Usuario" layoutX="117.0" layoutY="232.0" promptText="Usuario" />
       <TextField fx:id="Contraseña" layoutX="348.0" layoutY="232.0" promptText="Contraseña" />
-      <Button fx:id="Iniciar" layoutX="243.0" layoutY="285.0" mnemonicParsing="false" onAction="#Click" prefHeight="27.0" prefWidth="133.0" style="-fx-background-color: #0F385A;" text="INICIAR SESIÓN" textFill="WHITE">
+      <Button fx:id="IniciarSesion" layoutX="243.0" layoutY="285.0" mnemonicParsing="false" onAction="#ClickIniciarSesion" prefHeight="27.0" prefWidth="133.0" style="-fx-background-color: #0F385A;" text="INICIAR SESIÓN" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font></Button>
@@ -20,7 +20,7 @@
             <Image url="@logo.png" />
          </image>
       </ImageView>
-      <Button fx:id="Iniciar1" layoutX="13.0" layoutY="364.0" mnemonicParsing="false" onAction="#Click" prefHeight="18.0" prefWidth="94.0" style="-fx-background-color: #0F385A;" text="VOLVER" textFill="WHITE">
+      <Button fx:id="Iniciar1" layoutX="13.0" layoutY="364.0" mnemonicParsing="false" onAction="#ClickVolver" prefHeight="18.0" prefWidth="94.0" style="-fx-background-color: #0F385A;" text="VOLVER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
