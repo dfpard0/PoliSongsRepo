@@ -12,7 +12,10 @@
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
-      <Button fx:id="BotonRegistro" layoutX="343.0" layoutY="270.0" mnemonicParsing="false" onAction="#registro" style="-fx-background-color: #0F385A;" text="REGISTRARSE" textFill="WHITE" />
+      <Button fx:id="BotonRegistro" layoutX="343.0" layoutY="270.0" mnemonicParsing="false" onAction="#registro" style="-fx-background-color: #0F385A;" text="REGISTRARSE" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
       <ImageView fitHeight="256.0" fitWidth="336.0" layoutX="161.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@logo.png" />
