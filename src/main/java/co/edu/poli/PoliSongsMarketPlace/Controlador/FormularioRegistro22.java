@@ -15,8 +15,7 @@ import javafx.stage.Stage;
 
 public class FormularioRegistro22 {
 
-    @FXML
-    private ComboBox<String> ComboBoxRol;
+    
 
     @FXML
     private TextField CorreoElectronico;
@@ -29,9 +28,7 @@ public class FormularioRegistro22 {
 
     @FXML
     private TextField NombreUsuario;
-
-    @FXML
-    private TextField Numerocel;
+    
 
     @FXML
     private TextField Password1;
@@ -39,8 +36,7 @@ public class FormularioRegistro22 {
     @FXML
     private TextField Password2;
 
-    @FXML
-    private TextField documento;
+    
 
     private ManagerUsuario usuarioManager;
 
@@ -66,9 +62,8 @@ public class FormularioRegistro22 {
         Usuario usuario = new Usuario();
         usuario.setNombreUsuario(NombreUsuario.getText());
         usuario.setCorreoElectronico(CorreoElectronico.getText());
-        usuario.setNumero(Numerocel.getText());
-        usuario.setDocumento(documento.getText());
-        usuario.setTelefono(Numerocel.getText());
+        usuario.setPassword(pass2);
+        
 
         boolean exito = usuarioManager.registrarUsuario(usuario);
         if (exito) {
