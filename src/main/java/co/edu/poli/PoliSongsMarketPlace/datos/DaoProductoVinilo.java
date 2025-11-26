@@ -21,14 +21,16 @@ public class DaoProductoVinilo {
    
     // Insertar nuevo producto vinilo
     public boolean insertar(productovinilo productoVinilo) {
-        String sql = "INSERT INTO productovinilo (idproductovini, idproducto, stock) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO productovinilo (idproductovini, titulo, cantidad, precio) VALUES (?, ?, ?, ?)";
 
         try (Connection conn = ConexionSupabase.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setLong(1, productoVinilo.getIdProductoVini());
-            stmt.setString(2, productoVinilo.getIdProducto());
-            stmt.setInt(3, productoVinilo.getStock());
+            stmt.setString(1, productoVinilo.getIdProductoVini());
+            stmt.setString(2, productoVinilo.getTitulo());
+            stmt.setInt(3, productoVinilo.getCantidad());
+            stmt.setInt(4, productoVinilo.getPrecio());
+            
 
             stmt.executeUpdate();
             System.out.println("✅ Producto vinilo insertado correctamente");
@@ -51,9 +53,10 @@ public class DaoProductoVinilo {
 
             while (rs.next()) {
                 productovinilo pv = new productovinilo(
-                    rs.getLong("idproductovini"),
-                    rs.getString("idproducto"),
-                    rs.getInt("stock")
+                    rs.getString("idproductovini"),
+                    rs.getString("titulo"),
+                    rs.getInt("cantidad"),
+                    rs.getInt("precio")
                 );
                 lista.add(pv);
             }
@@ -78,9 +81,10 @@ public class DaoProductoVinilo {
 
             if (rs.next()) {
                 pv = new productovinilo(
-                    rs.getLong("idproductovini"),
-                    rs.getString("idproducto"),
-                    rs.getInt("stock")
+                    rs.getString("idproductovini"),
+                    rs.getString("titulo"),
+                    rs.getInt("cantidad"),
+                    rs.getInt("precio")
                 );
             }
 
@@ -92,21 +96,22 @@ public class DaoProductoVinilo {
     }
 
     // Buscar producto vinilo por ID de producto
-    public productovinilo buscarPorIdProducto(String idProducto) {
-        String sql = "SELECT * FROM productovinilo WHERE idproducto = ?";
+    public productovinilo buscarPorTitulo(String titulo) {
+        String sql = "SELECT * FROM productovinilo WHERE titulo = ?";
         productovinilo pv = null;
 
         try (Connection conn = ConexionSupabase.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setString(1, idProducto);
+            stmt.setString(1, titulo);
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
                 pv = new productovinilo(
-                    rs.getLong("idproductovini"),
-                    rs.getString("idproducto"),
-                    rs.getInt("stock")
+                    rs.getString("idproductovini"),
+                    rs.getString("titulo"),
+                    rs.getInt("cantidad"),
+                    rs.getInt("precio")
                 );
             }
 
@@ -119,14 +124,15 @@ public class DaoProductoVinilo {
 
     // Actualizar producto vinilo
     public boolean actualizar(productovinilo productoVinilo) {
-        String sql = "UPDATE productovinilo SET idproducto=?, stock=? WHERE idproductovini=?";
+        String sql = "UPDATE productovinilo SET titulo=?, cantidad=?, precio=? WHERE idproductovini=?";
 
         try (Connection conn = ConexionSupabase.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setString(1, productoVinilo.getIdProducto());
-            stmt.setInt(2, productoVinilo.getStock());
-            stmt.setLong(3, productoVinilo.getIdProductoVini());
+            stmt.setString(1, productoVinilo.getTitulo());
+            stmt.setInt(2, productoVinilo.getCantidad());
+            stmt.setInt(3, productoVinilo.getPrecio());
+            stmt.setString(4, productoVinilo.getIdProductoVini());
 
             stmt.executeUpdate();
             System.out.println("✅ Producto vinilo actualizado correctamente");
@@ -139,14 +145,14 @@ public class DaoProductoVinilo {
     }
 
     // Actualizar solo el stock
-    public boolean actualizarStock(long idProductoVini, int nuevoStock) {
-        String sql = "UPDATE productovinilo SET stock=? WHERE idproductovini=?";
+    public boolean actualizarStock(String idProductoVini, int nuevoStock) {
+        String sql = "UPDATE productovinilo SET cantidad=? WHERE idproductovini=?";
 
         try (Connection conn = ConexionSupabase.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, nuevoStock);
-            stmt.setLong(2, idProductoVini);
+            stmt.setString(2, idProductoVini);
 
             stmt.executeUpdate();
             System.out.println("✅ Stock de producto vinilo actualizado correctamente");
@@ -159,13 +165,13 @@ public class DaoProductoVinilo {
     }
 
     // Eliminar producto vinilo
-    public boolean eliminar(long id) {
+    public boolean eliminar(String id) {
         String sql = "DELETE FROM productovinilo WHERE idproductovini = ?";
 
         try (Connection conn = ConexionSupabase.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setLong(1, id);
+            stmt.setString(1, id);
             stmt.executeUpdate();
             System.out.println("✅ Producto vinilo eliminado correctamente");
             return true;
@@ -178,7 +184,7 @@ public class DaoProductoVinilo {
 
     // Verificar stock disponible
     public boolean verificarStock(long idProductoVini, int cantidadRequerida) {
-        String sql = "SELECT stock FROM productovinilo WHERE idproductovini = ?";
+        String sql = "SELECT cantidad FROM productovinilo WHERE idproductovini = ?";
         
         try (Connection conn = ConexionSupabase.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -187,7 +193,7 @@ public class DaoProductoVinilo {
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                int stockActual = rs.getInt("stock");
+                int stockActual = rs.getInt("cantidad");
                 return stockActual >= cantidadRequerida;
             }
 

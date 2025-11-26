@@ -10,40 +10,50 @@ package co.edu.poli.PoliSongsMarketPlace.Managers;
  */
 public class productovinilo {
     
-    private long idProductoVini;
-    private String idProducto;
-    private int stock;
+    private String idProductoVini;
+    private String titulo;
+    private int cantidad;
+    private int precio;
 
-    // Constructor
-    public productovinilo(long idProductoVini, String idProducto, int stock) {
+    public productovinilo(String idProductoVini, String titulo, int cantidad, int precio) {
         this.idProductoVini = idProductoVini;
-        this.idProducto = idProducto;
-        this.stock = stock;
+        this.titulo = titulo;
+        this.cantidad = cantidad;
+        this.precio = precio;
     }
 
-    // Getters y Setters
-    public long getIdProductoVini() {
+    public String getIdProductoVini() {
         return idProductoVini;
     }
 
-    public void setIdProductoVini(long idProductoVini) {
+    public void setIdProductoVini(String idProductoVini) {
         this.idProductoVini = idProductoVini;
     }
 
-    public String getIdProducto() {
-        return idProducto;
+    public String getTitulo() {
+        return titulo;
     }
 
-    public void setIdProducto(String idProducto) {
-        this.idProducto = idProducto;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
-    public int getStock() {
-        return stock;
+    public int getCantidad() {
+        return cantidad;
     }
 
-    public void setStock(int stock) {
-        this.stock = stock;
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
     }
 
+    public int getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(int precio) {
+        this.precio = precio;
+    }
+
+    
 }
+
