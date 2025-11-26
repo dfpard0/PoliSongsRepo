@@ -60,7 +60,6 @@ public class controladorCatalogo implements Initializable {
     private TableColumn<productovinilo, String> columTitulo;
 
     final private ObservableList<productovinilo> listaVinilos = FXCollections.observableArrayList();
-    final private ObservableList<carritoitem> carrito = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -118,14 +117,14 @@ public class controladorCatalogo implements Initializable {
                 mostrarAlerta("Sin selección", "Primero debes seleccionar un vinilo.");
                 return;
             }
-            if(cantCarrito.getText().isBlank()){
+            if (cantCarrito.getText().isBlank()) {
                 cantCarrito.setText("1");
-            }else {
-                int cantTotal = Integer.parseInt(cantCarrito.getText())+1;
+            } else {
+                int cantTotal = Integer.parseInt(cantCarrito.getText()) + 1;
                 cantCarrito.setText(String.valueOf(cantTotal));
             }
             dao.insertar(carritoItem);
-            carrito.add(carritoItem);
+
             mostrarAlerta("Añadido", "El vinilo fue añadido al carrito.");
 
         } catch (Exception e) {

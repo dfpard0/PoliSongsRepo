@@ -25,23 +25,23 @@ import java.util.List;
 public class DaoCarritoItem {
 
     // Insertar nuevo item al carrito
-    public boolean insertar(carritoitem carritoItem) {
-        String sql = "INSERT INTO carrito (iditem, idproducto, cant, total) VALUES (?, ?, ?, ?)";
+    public String insertar(carritoitem carritoItem) {
+        String sql = "INSERT INTO carrito ( idproducto, cant, total) VALUES ( ?, ?, ?)";
 
         try (Connection conn = ConexionSupabase.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setString(1, carritoItem.getIdItem());
-            stmt.setString(2, carritoItem.getIdProducto());
-            stmt.setInt(3, carritoItem.getCant());
-            stmt.setInt(4, carritoItem.getTotal());
+            
+            stmt.setString(1, carritoItem.getIdProducto());
+            stmt.setInt(2, carritoItem.getCant());
+            stmt.setInt(3, carritoItem.getTotal());
 
             stmt.executeUpdate();
-            System.out.println("✅ Item de carrito insertado correctamente");
-            return true;
+            return("✅ Item de carrito insertado correctamente");
+           
 
         } catch (SQLException e) {
-            System.out.println("❌ Error al insertar item de carrito: " + e.getMessage());
-            return false;
+            return("❌ Error al insertar item de carrito: " + e.getMessage());
+           
         }
     }
 
@@ -96,7 +96,7 @@ public class DaoCarritoItem {
     }
 
     // Actualizar item del carrito
-    public boolean actualizar(carritoitem carritoItem) {
+    public String actualizar(carritoitem carritoItem) {
         String sql = "UPDATE carrito SET idproducto=?, cant=?, total=? WHERE iditem=?";
 
         try (Connection conn = ConexionSupabase.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -107,29 +107,29 @@ public class DaoCarritoItem {
             stmt.setString(4, carritoItem.getIdItem());
 
             stmt.executeUpdate();
-            System.out.println("✅ Item de carrito actualizado correctamente");
-            return true;
+            return("✅ Item de carrito actualizado correctamente");
+            
 
         } catch (SQLException e) {
-            System.out.println("❌ Error al actualizar item de carrito: " + e.getMessage());
-            return false;
+            return("❌ Error al actualizar item de carrito: " + e.getMessage());
+            
         }
     }
 
     // Eliminar item del carrito
-    public boolean eliminar(String id) {
+    public String eliminar(String id) {
         String sql = "DELETE FROM carrito WHERE iditem = ?";
 
         try (Connection conn = ConexionSupabase.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, id);
             stmt.executeUpdate();
-            System.out.println("✅ Item de carrito eliminado correctamente");
-            return true;
+            return("✅ Item de carrito eliminado correctamente");
+            
 
         } catch (SQLException e) {
-            System.out.println("❌ Error al eliminar item de carrito: " + e.getMessage());
-            return false;
+            return("❌ Error al eliminar item de carrito: " + e.getMessage());
+            
         }
     }
 

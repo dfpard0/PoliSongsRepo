@@ -20,7 +20,7 @@ import java.util.List;
 public class DaoProductoVinilo {
    
     // Insertar nuevo producto vinilo
-    public boolean insertar(productovinilo productoVinilo) {
+    public String insertar(productovinilo productoVinilo) {
         String sql = "INSERT INTO productovinilo (idproductovini, titulo, autor, cantidad, precio) VALUES (?, ?, ?, ?, ?)";
 
         try (Connection conn = ConexionSupabase.getConnection();
@@ -34,12 +34,12 @@ public class DaoProductoVinilo {
             
 
             stmt.executeUpdate();
-            System.out.println("✅ Producto vinilo insertado correctamente");
-            return true;
+            return("✅ Producto vinilo insertado correctamente");
+            
 
         } catch (SQLException e) {
-            System.out.println("❌ Error al insertar producto vinilo: " + e.getMessage());
-            return false;
+            return("❌ Error al insertar producto vinilo: " + e.getMessage());
+            
         }
     }
 
@@ -127,7 +127,7 @@ public class DaoProductoVinilo {
     }
 
     // Actualizar producto vinilo
-    public boolean actualizar(productovinilo productoVinilo) {
+    public String actualizar(productovinilo productoVinilo) {
         String sql = "UPDATE productovinilo SET titulo=?, autor=?, cantidad=?, precio=? WHERE idproductovini=?";
 
         try (Connection conn = ConexionSupabase.getConnection();
@@ -140,17 +140,17 @@ public class DaoProductoVinilo {
             stmt.setString(5, productoVinilo.getIdProductoVini());
 
             stmt.executeUpdate();
-            System.out.println("✅ Producto vinilo actualizado correctamente");
-            return true;
+            return("✅ Producto vinilo actualizado correctamente");
+            
 
         } catch (SQLException e) {
-            System.out.println("❌ Error al actualizar producto vinilo: " + e.getMessage());
-            return false;
+            return("❌ Error al actualizar producto vinilo: " + e.getMessage());
+            
         }
     }
 
     // Actualizar solo el stock
-    public boolean actualizarStock(String idProductoVini, int nuevoStock) {
+    public String actualizarStock(String idProductoVini, int nuevoStock) {
         String sql = "UPDATE productovinilo SET cantidad=? WHERE idproductovini=?";
 
         try (Connection conn = ConexionSupabase.getConnection();
@@ -160,17 +160,17 @@ public class DaoProductoVinilo {
             stmt.setString(2, idProductoVini);
 
             stmt.executeUpdate();
-            System.out.println("✅ Stock de producto vinilo actualizado correctamente");
-            return true;
+            return("✅ Stock de producto vinilo actualizado correctamente");
+            
 
         } catch (SQLException e) {
-            System.out.println("❌ Error al actualizar stock de producto vinilo: " + e.getMessage());
-            return false;
+            return("❌ Error al actualizar stock de producto vinilo: " + e.getMessage());
+            
         }
     }
 
     // Eliminar producto vinilo
-    public boolean eliminar(String id) {
+    public String eliminar(String id) {
         String sql = "DELETE FROM productovinilo WHERE idproductovini = ?";
 
         try (Connection conn = ConexionSupabase.getConnection();
@@ -178,12 +178,12 @@ public class DaoProductoVinilo {
 
             stmt.setString(1, id);
             stmt.executeUpdate();
-            System.out.println("✅ Producto vinilo eliminado correctamente");
-            return true;
+            return("✅ Producto vinilo eliminado correctamente");
+            
 
         } catch (SQLException e) {
-            System.out.println("❌ Error al eliminar producto vinilo: " + e.getMessage());
-            return false;
+            return("❌ Error al eliminar producto vinilo: " + e.getMessage());
+            
         }
     }
 
