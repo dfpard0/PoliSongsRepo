@@ -12,12 +12,14 @@ public class productovinilo {
     
     private String idProductoVini;
     private String titulo;
+    private String autor;
     private int cantidad;
     private int precio;
 
-    public productovinilo(String idProductoVini, String titulo, int cantidad, int precio) {
+    public productovinilo(String idProductoVini, String titulo, String autor, int cantidad, int precio) {
         this.idProductoVini = idProductoVini;
         this.titulo = titulo;
+        this.autor = autor;
         this.cantidad = cantidad;
         this.precio = precio;
     }
@@ -38,6 +40,14 @@ public class productovinilo {
         this.titulo = titulo;
     }
 
+    public String getAutor() {
+        return autor;
+    }
+
+    public void setAutor(String autor) {
+        this.autor = autor;
+    }
+
     public int getCantidad() {
         return cantidad;
     }
@@ -54,6 +64,7 @@ public class productovinilo {
         this.precio = precio;
     }
 
+    
     
 }
 

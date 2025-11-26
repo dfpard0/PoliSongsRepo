@@ -21,15 +21,16 @@ public class DaoProductoVinilo {
    
     // Insertar nuevo producto vinilo
     public boolean insertar(productovinilo productoVinilo) {
-        String sql = "INSERT INTO productovinilo (idproductovini, titulo, cantidad, precio) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO productovinilo (idproductovini, titulo, autor, cantidad, precio) VALUES (?, ?, ?, ?, ?)";
 
         try (Connection conn = ConexionSupabase.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, productoVinilo.getIdProductoVini());
             stmt.setString(2, productoVinilo.getTitulo());
-            stmt.setInt(3, productoVinilo.getCantidad());
-            stmt.setInt(4, productoVinilo.getPrecio());
+            stmt.setString(3, productoVinilo.getAutor());            
+            stmt.setInt(4, productoVinilo.getCantidad());
+            stmt.setInt(5, productoVinilo.getPrecio());
             
 
             stmt.executeUpdate();
@@ -55,6 +56,7 @@ public class DaoProductoVinilo {
                 productovinilo pv = new productovinilo(
                     rs.getString("idproductovini"),
                     rs.getString("titulo"),
+                    rs.getString("autor"),  
                     rs.getInt("cantidad"),
                     rs.getInt("precio")
                 );
@@ -69,20 +71,21 @@ public class DaoProductoVinilo {
     }
 
     // Buscar producto vinilo por ID
-    public productovinilo buscarPorId(long id) {
+    public productovinilo buscarPorId(String id) {
         String sql = "SELECT * FROM productovinilo WHERE idproductovini = ?";
         productovinilo pv = null;
 
         try (Connection conn = ConexionSupabase.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setLong(1, id);
+            stmt.setString(1, id);
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
                 pv = new productovinilo(
                     rs.getString("idproductovini"),
                     rs.getString("titulo"),
+                    rs.getString("autor"),  
                     rs.getInt("cantidad"),
                     rs.getInt("precio")
                 );
@@ -110,6 +113,7 @@ public class DaoProductoVinilo {
                 pv = new productovinilo(
                     rs.getString("idproductovini"),
                     rs.getString("titulo"),
+                    rs.getString("autor"),  
                     rs.getInt("cantidad"),
                     rs.getInt("precio")
                 );
@@ -124,15 +128,16 @@ public class DaoProductoVinilo {
 
     // Actualizar producto vinilo
     public boolean actualizar(productovinilo productoVinilo) {
-        String sql = "UPDATE productovinilo SET titulo=?, cantidad=?, precio=? WHERE idproductovini=?";
+        String sql = "UPDATE productovinilo SET titulo=?, autor=?, cantidad=?, precio=? WHERE idproductovini=?";
 
         try (Connection conn = ConexionSupabase.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, productoVinilo.getTitulo());
-            stmt.setInt(2, productoVinilo.getCantidad());
-            stmt.setInt(3, productoVinilo.getPrecio());
-            stmt.setString(4, productoVinilo.getIdProductoVini());
+            stmt.setString(2, productoVinilo.getAutor());
+            stmt.setInt(3, productoVinilo.getCantidad());
+            stmt.setInt(4, productoVinilo.getPrecio());
+            stmt.setString(5, productoVinilo.getIdProductoVini());
 
             stmt.executeUpdate();
             System.out.println("✅ Producto vinilo actualizado correctamente");
@@ -183,13 +188,13 @@ public class DaoProductoVinilo {
     }
 
     // Verificar stock disponible
-    public boolean verificarStock(long idProductoVini, int cantidadRequerida) {
+    public boolean verificarStock(String idProductoVini, int cantidadRequerida) {
         String sql = "SELECT cantidad FROM productovinilo WHERE idproductovini = ?";
         
         try (Connection conn = ConexionSupabase.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setLong(1, idProductoVini);
+            stmt.setString(1, idProductoVini);
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {

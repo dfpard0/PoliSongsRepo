@@ -1,15 +1,13 @@
-package co.edu.poli.aplicacion.controlador;
+package co.edu.poli.PoliSongsMarketPlace.Controlador;
 
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
-public class controladorCatalogo implements Initializable{
+public class controladorCatalogo {
 
     @FXML
     private Button btnAñadirCarrito;
@@ -18,16 +16,39 @@ public class controladorCatalogo implements Initializable{
     private Button btnVerCarrito;
 
     @FXML
+    private Button btnirapagar;
+
+    @FXML
     private Button btnvolver;
 
     @FXML
     private TextField cantCarrito;
 
     @FXML
-    private ListView<?> catalogo;
+    private TableView<?> catalogo;
+
+    @FXML
+    private TableColumn<?, ?> columAutor;
+
+    @FXML
+    private TableColumn<?, ?> columCant;
+
+    @FXML
+    private TableColumn<?, ?> columCodigo;
+
+    @FXML
+    private TableColumn<?, ?> columPrecio;
+
+    @FXML
+    private TableColumn<?, ?> columTitulo;
 
     @FXML
     void clickAñadirCarrito(ActionEvent event) {
+
+    }
+
+    @FXML
+    void clickIrAPagar(ActionEvent event) {
 
     }
 
@@ -40,11 +61,6 @@ public class controladorCatalogo implements Initializable{
     void clickVolver(ActionEvent event) {
 
     }
-
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        
-        }
 
 }
 
