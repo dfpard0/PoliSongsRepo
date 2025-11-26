@@ -3,10 +3,15 @@ package co.edu.poli.PoliSongsMarketPlace.Controlador;
 import co.edu.poli.PoliSongsMarketPlace.Managers.ManagerUsuario;
 import co.edu.poli.PoliSongsMarketPlace.modelo.Usuario;
 import co.edu.poli.PoliSongsMarketPlace.repositorio.ConexionSupabase2;
+import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import java.sql.Connection;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 public class FormularioRegistro22 {
 
@@ -18,6 +23,9 @@ public class FormularioRegistro22 {
 
     @FXML
     private Button Iniciar;
+    
+    @FXML
+    private Button btnVolver;
 
     @FXML
     private TextField NombreUsuario;
@@ -68,6 +76,18 @@ public class FormularioRegistro22 {
         } else {
             mostrarAlerta("Error", "No se pudo registrar el usuario.");
         }
+    }
+    
+    @FXML
+    void ClickVolver(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/co/edu/poli/PoliSongsMarketPlace/Vista/MenuInicio1.fxml"));
+
+        // Obtener la ventana actual
+        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+
+        // Cambiar la escena
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
     private void mostrarAlerta(String titulo, String mensaje) {

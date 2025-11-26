@@ -25,7 +25,7 @@ public class MenuInicio1 {
 
     @FXML
     void inicio(ActionEvent event) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("Formularioinicio21.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/co/edu/poli/PoliSongsMarketPlace/Vista/Formularioinicio21.fxml"));
 
         // Obtener la ventana actual
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
