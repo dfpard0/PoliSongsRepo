@@ -134,12 +134,28 @@ public class controladorCatalogo implements Initializable {
     }
 
     @FXML
-    void clickIrAPagar(ActionEvent event) {
+    void clickIrAPagar(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("procesoPago.fxml"));
+
+        // Obtener la ventana actual
+        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+
+        // Cambiar la escena
+        stage.setScene(new Scene(root));
+        stage.show();
 
     }
 
     @FXML
-    void clickVerCarrito(ActionEvent event) {
+    void clickVerCarrito(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("carritodecompras.fxml"));
+
+        // Obtener la ventana actual
+        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+
+        // Cambiar la escena
+        stage.setScene(new Scene(root));
+        stage.show();
 
     }
 

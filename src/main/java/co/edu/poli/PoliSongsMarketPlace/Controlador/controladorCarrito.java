@@ -110,7 +110,7 @@ public class controladorCarrito implements Initializable {
 
     @FXML
     void clickIrAPagar(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("MenuInicio1.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("procesoPago.fxml"));
 
         // Obtener la ventana actual
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
