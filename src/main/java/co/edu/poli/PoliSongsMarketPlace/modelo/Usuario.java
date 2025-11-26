@@ -12,8 +12,8 @@ public class Usuario {
     private String password;
 
     public Usuario (){}
-    public Usuario(int id, String nombreUsuario, String correoElectronico, String password) {
-        this.id = id;
+    public Usuario(long id, String nombreUsuario, String correoElectronico, String password) {
+        this.id = (int) id;
         this.nombreUsuario = nombreUsuario;
         this.correoElectronico = correoElectronico;
         this.password = password;
@@ -23,8 +23,8 @@ public class Usuario {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(long id) {
+        this.id = (int) id;
     }
 
     public String getNombreUsuario() {
