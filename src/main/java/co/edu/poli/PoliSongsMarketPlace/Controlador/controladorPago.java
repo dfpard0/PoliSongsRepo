@@ -2,8 +2,10 @@ package co.edu.poli.PoliSongsMarketPlace.controlador;
 
 import co.edu.poli.PoliSongsMarketPlace.Managers.carritoitem;
 import co.edu.poli.PoliSongsMarketPlace.Managers.coleccionCarritos;
+import co.edu.poli.PoliSongsMarketPlace.Managers.usuariocomprador;
 import co.edu.poli.PoliSongsMarketPlace.datos.DaoCarritoItem;
 import co.edu.poli.PoliSongsMarketPlace.datos.DaoColeccionCarritos;
+import co.edu.poli.PoliSongsMarketPlace.datos.DaoUsuario;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -52,6 +54,7 @@ public class controladorPago implements Initializable {
     private TextField total;
     
    DaoColeccionCarritos dao = new DaoColeccionCarritos();
+   DaoUsuario  daous = new DaoUsuario();
    
 
     @Override
@@ -69,6 +72,9 @@ public class controladorPago implements Initializable {
         
         coleccionCarritos car = dao.obtenerUltimoRegistro();
         total.setText(String.valueOf(car.getTotal()));
+        
+        
+        
         
         
     }

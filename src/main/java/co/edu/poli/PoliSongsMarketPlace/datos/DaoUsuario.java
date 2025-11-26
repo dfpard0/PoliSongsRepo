@@ -8,6 +8,7 @@ public class DaoUsuario {
 
     private Connection connection;
 
+    public DaoUsuario(){};
     public DaoUsuario(Connection connection) {
         this.connection = connection;
     }

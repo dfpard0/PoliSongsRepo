@@ -27,7 +27,7 @@ public class DaoColeccionCarritos {
 
     // Insertar nuevo carrito
     public String insertar(coleccionCarritos carrito) {
-        String sql = "INSERT INTO coleccioncarrito (cant, total) VALUES (?, ?)";
+        String sql = "INSERT INTO coleccioncarritos (cant, total) VALUES (?, ?)";
 
         try (Connection conn = ConexionSupabase2.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
@@ -128,15 +128,17 @@ public class DaoColeccionCarritos {
         String sql = "SELECT * FROM coleccioncarritos ORDER BY idcarrito DESC LIMIT 1";
         coleccionCarritos car = null;
 
-        try (Connection conn = ConexionSupabase.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
+        try (Connection conn = ConexionSupabase2.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
 
             if (rs.next()) {
                 car = new coleccionCarritos(
-                        rs.getInt("idcarrto"),
+                        rs.getInt("idcarrito"),
                         rs.getInt("cant"),
                         rs.getInt("total")
                 );
             }
+            
+            return car;
 
         } catch (SQLException e) {
             System.out.println("❌ Error al obtener último registro: " + e.getMessage());

@@ -12,11 +12,12 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import co.edu.poli.PoliSongsMarketPlace.repositorio.ConexionSupabase2;
 import javafx.scene.control.Alert;
+import javafx.scene.control.PasswordField;
 
 public class Formularioinicio21 {
 
     @FXML
-    private TextField Contraseña;
+    private PasswordField Contraseña;
 
     @FXML
     private Button Iniciar1;
