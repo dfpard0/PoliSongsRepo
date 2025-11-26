@@ -18,4 +18,19 @@ public class ManagerUsuario {
     public boolean registrarUsuario(Usuario usuario) {
         return DaoUsuario.insertarUsuario(usuario);
     }
+    
+    public ManagerUsuario() {
+        // Obtener la conexión de Supabase
+        this.DaoUsuario = new DaoUsuario((ConexionSupabase2) ConexionSupabase2.getConnection());
+    }
+
+    public boolean verificarLogin(String nombreUsuario, String password) {
+        return DaoUsuario.verificarCredenciales(nombreUsuario, password);
+    }
+    // Método para verificar credenciales de login
+    
+
+    
+    
+    
 }
