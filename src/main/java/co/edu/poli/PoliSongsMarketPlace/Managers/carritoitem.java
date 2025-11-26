@@ -9,26 +9,24 @@ package co.edu.poli.PoliSongsMarketPlace.Managers;
  * @author Pardo
  */
 public class carritoitem {
-     private String idCarritoItem;
+    private String idItem;
     private String idProducto;
-    private String idCarrito;
-    private int cantidad;
+    private int cant;
+    private int total;
 
-    // Constructor
-    public carritoitem(String idCarritoItem, String idProducto, String idCarrito, int cantidad) {
-        this.idCarritoItem = idCarritoItem;
+    public carritoitem(String idItem, String idProducto, int cant, int total) {
+        this.idItem = idItem;
         this.idProducto = idProducto;
-        this.idCarrito = idCarrito;
-        this.cantidad = cantidad;
+        this.cant = cant;
+        this.total = total;
     }
 
-    // Getters y Setters
-    public String getIdCarritoItem() {
-        return idCarritoItem;
+    public String getIdItem() {
+        return idItem;
     }
 
-    public void setIdCarritoItem(String idCarritoItem) {
-        this.idCarritoItem = idCarritoItem;
+    public void setIdItem(String idItem) {
+        this.idItem = idItem;
     }
 
     public String getIdProducto() {
@@ -39,19 +37,21 @@ public class carritoitem {
         this.idProducto = idProducto;
     }
 
-    public String getIdCarrito() {
-        return idCarrito;
+    public int getCant() {
+        return cant;
     }
 
-    public void setIdCarrito(String idCarrito) {
-        this.idCarrito = idCarrito;
+    public void setCant(int cant) {
+        this.cant = cant;
     }
 
-    public int getCantidad() {
-        return cantidad;
+    public int getTotal() {
+        return total;
     }
 
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
+    public void setTotal(int total) {
+        this.total = total;
     }
+
+    
 }

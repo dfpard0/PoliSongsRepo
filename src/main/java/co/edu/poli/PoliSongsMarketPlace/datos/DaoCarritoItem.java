@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package co.edu.poli.PoliSongsMarketPlace.datos;
+
 import co.edu.poli.PoliSongsMarketPlace.repositorio.ConexionSupabase;
 import co.edu.poli.PoliSongsMarketPlace.negocio.UsuarioManager;
 import java.sql.Connection;
@@ -25,15 +26,14 @@ public class DaoCarritoItem {
 
     // Insertar nuevo item al carrito
     public boolean insertar(carritoitem carritoItem) {
-        String sql = "INSERT INTO carritoitem (idcarritoitem, idproducto, idcarrito, cantidad) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO carrito (iditem, idproducto, cant, total) VALUES (?, ?, ?, ?)";
 
-        try (Connection conn = ConexionSupabase.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = ConexionSupabase.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setString(1, carritoItem.getIdCarritoItem());
+            stmt.setString(1, carritoItem.getIdItem());
             stmt.setString(2, carritoItem.getIdProducto());
-            stmt.setString(3, carritoItem.getIdCarrito());
-            stmt.setInt(4, carritoItem.getCantidad());
+            stmt.setInt(3, carritoItem.getCant());
+            stmt.setInt(4, carritoItem.getTotal());
 
             stmt.executeUpdate();
             System.out.println("✅ Item de carrito insertado correctamente");
@@ -48,18 +48,16 @@ public class DaoCarritoItem {
     // Listar todos los items del carrito
     public List<carritoitem> listar() {
         List<carritoitem> lista = new ArrayList<>();
-        String sql = "SELECT * FROM carritoitem";
+        String sql = "SELECT * FROM carrito";
 
-        try (Connection conn = ConexionSupabase.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
+        try (Connection conn = ConexionSupabase.getConnection(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
 
             while (rs.next()) {
                 carritoitem ci = new carritoitem(
-                    rs.getString("idcarritoitem"),
-                    rs.getString("idproducto"),
-                    rs.getString("idcarrito"),
-                    rs.getInt("cantidad")
+                        rs.getString("iditem"),
+                        rs.getString("idproducto"),
+                        rs.getInt("cant"),
+                        rs.getInt("total")
                 );
                 lista.add(ci);
             }
@@ -73,21 +71,20 @@ public class DaoCarritoItem {
 
     // Buscar item por ID
     public carritoitem buscarPorId(String id) {
-        String sql = "SELECT * FROM carritoitem WHERE idcarritoitem = ?";
+        String sql = "SELECT * FROM carrito WHERE iditem = ?";
         carritoitem ci = null;
 
-        try (Connection conn = ConexionSupabase.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = ConexionSupabase.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, id);
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
                 ci = new carritoitem(
-                    rs.getString("idcarritoitem"),
-                    rs.getString("idproducto"),
-                    rs.getString("idcarrito"),
-                    rs.getInt("cantidad")
+                        rs.getString("iditem"),
+                        rs.getString("idproducto"),
+                        rs.getInt("cant"),
+                        rs.getInt("total")
                 );
             }
 
@@ -98,45 +95,16 @@ public class DaoCarritoItem {
         return ci;
     }
 
-    // Buscar items por carrito
-    public List<carritoitem> buscarPorCarrito(String idCarrito) {
-        List<carritoitem> lista = new ArrayList<>();
-        String sql = "SELECT * FROM carritoitem WHERE idcarrito = ?";
-
-        try (Connection conn = ConexionSupabase.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            stmt.setString(1, idCarrito);
-            ResultSet rs = stmt.executeQuery();
-
-            while (rs.next()) {
-                carritoitem ci = new carritoitem(
-                    rs.getString("idcarritoitem"),
-                    rs.getString("idproducto"),
-                    rs.getString("idcarrito"),
-                    rs.getInt("cantidad")
-                );
-                lista.add(ci);
-            }
-
-        } catch (SQLException e) {
-            System.out.println("❌ Error al buscar items por carrito: " + e.getMessage());
-        }
-
-        return lista;
-    }
-
     // Actualizar item del carrito
     public boolean actualizar(carritoitem carritoItem) {
-        String sql = "UPDATE carritoitem SET idproducto=?, idcarrito=?, cantidad=? WHERE idcarritoitem=?";
+        String sql = "UPDATE carrito SET idproducto=?, cant=?, total=? WHERE iditem=?";
 
-        try (Connection conn = ConexionSupabase.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = ConexionSupabase.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, carritoItem.getIdProducto());
-            stmt.setString(2, carritoItem.getIdCarrito());
-            stmt.setInt(3, carritoItem.getCantidad());
-            stmt.setString(4, carritoItem.getIdCarritoItem());
+            stmt.setInt(2, carritoItem.getCant());
+            stmt.setInt(3, carritoItem.getTotal());
+            stmt.setString(4, carritoItem.getIdItem());
 
             stmt.executeUpdate();
             System.out.println("✅ Item de carrito actualizado correctamente");
@@ -150,10 +118,9 @@ public class DaoCarritoItem {
 
     // Eliminar item del carrito
     public boolean eliminar(String id) {
-        String sql = "DELETE FROM carritoitem WHERE idcarritoitem = ?";
+        String sql = "DELETE FROM carrito WHERE iditem = ?";
 
-        try (Connection conn = ConexionSupabase.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = ConexionSupabase.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, id);
             stmt.executeUpdate();
@@ -166,21 +133,4 @@ public class DaoCarritoItem {
         }
     }
 
-    // Eliminar todos los items de un carrito
-    public boolean eliminarPorCarrito(String idCarrito) {
-        String sql = "DELETE FROM carritoitem WHERE idcarrito = ?";
-
-        try (Connection conn = ConexionSupabase.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            stmt.setString(1, idCarrito);
-            stmt.executeUpdate();
-            System.out.println("✅ Todos los items del carrito eliminados correctamente");
-            return true;
-
-        } catch (SQLException e) {
-            System.out.println("❌ Error al eliminar items del carrito: " + e.getMessage());
-            return false;
-        }
-    }
 }

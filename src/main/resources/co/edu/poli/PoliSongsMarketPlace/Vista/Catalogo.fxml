@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="594.0" prefWidth="918.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.poli.aplicacion.controlador.controladorCatalogo">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="594.0" prefWidth="918.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.poli.PoliSongsMarketPlace.controlador.controladorCatalogo">
    <left>
       <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="598.0" prefWidth="251.0" style="-fx-background-color: #E0E0E0;" BorderPane.alignment="CENTER">
          <children>
@@ -33,7 +33,7 @@
                         <Font name="System Bold" size="13.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btnvolver" layoutX="25.0" layoutY="367.0" mnemonicParsing="false" onAction="#clickVolver" prefHeight="32.0" prefWidth="129.0" style="-fx-background-color: #FFFFFF; -fx-effect: dropshadow(gaussian, rgba(255,255,255,0.6), 15, 0, -2, 2); -fx-background-radius: 15;" text="VOLVER" textFill="#0f385a">
+                  <Button fx:id="btnSalir" layoutX="25.0" layoutY="367.0" mnemonicParsing="false" onAction="#clickSalir" prefHeight="32.0" prefWidth="129.0" style="-fx-background-color: #FFFFFF; -fx-effect: dropshadow(gaussian, rgba(255,255,255,0.6), 15, 0, -2, 2); -fx-background-radius: 15;" text="SALIR" textFill="#0f385a">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -73,10 +73,13 @@
                         <Image url="@carrito.png" />
                      </image>
                   </ImageView>
-                  <TableView layoutX="40.0" layoutY="44.0" prefHeight="200.0" prefWidth="433.0">
+                  <TableView fx:id="catalogo" layoutX="40.0" layoutY="44.0" prefHeight="350.0" prefWidth="497.0">
                     <columns>
-                      <TableColumn prefWidth="75.0" text="C1" />
-                      <TableColumn prefWidth="75.0" text="C2" />
+                      <TableColumn fx:id="columCodigo" prefWidth="93.59998321533203" text="CODIGO" />
+                      <TableColumn fx:id="columTitulo" prefWidth="119.20001220703125" text="TITULO" />
+                        <TableColumn fx:id="columAutor" prefWidth="132.79998779296875" text="AUTOR" />
+                        <TableColumn fx:id="columCant" prefWidth="64.0" text="CANT" />
+                        <TableColumn fx:id="columPrecio" prefWidth="90.39999389648438" text="PRECIO" />
                     </columns>
                   </TableView>
                </children>
