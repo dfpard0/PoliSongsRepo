@@ -63,13 +63,14 @@ public class controladorCatalogo implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
         configurarColumnas();
         cargarDatosDesdeBD();
 
     }
 
     private void configurarColumnas() {
-        columCodigo.setCellValueFactory(new PropertyValueFactory<>("idproductovini"));
+        columCodigo.setCellValueFactory(new PropertyValueFactory<>("idProductoVini"));
         columTitulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
         columAutor.setCellValueFactory(new PropertyValueFactory<>("autor"));
         columCant.setCellValueFactory(new PropertyValueFactory<>("cantidad"));
@@ -148,7 +149,7 @@ public class controladorCatalogo implements Initializable {
 
     @FXML
     void clickVerCarrito(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("carritodecompras.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/co/edu/poli/PoliSongsMarketPlace/Vista/carritodecompras.fxml"));
 
         // Obtener la ventana actual
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
@@ -161,7 +162,7 @@ public class controladorCatalogo implements Initializable {
 
     @FXML
     void clickSalir(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("MenuInicio1.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/co/edu/poli/PoliSongsMarketPlace/Vista/MenuInicio1.fxml"));
 
         // Obtener la ventana actual
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();

@@ -14,6 +14,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import co.edu.poli.PoliSongsMarketPlace.Managers.*;
+import co.edu.poli.PoliSongsMarketPlace.repositorio.ConexionSupabase2;
 /**
  *
  * @author Pardo
@@ -28,7 +29,7 @@ public class DaoCarritoItem {
     public String insertar(carritoitem carritoItem) {
         String sql = "INSERT INTO carrito ( idproducto, cant, total) VALUES ( ?, ?, ?)";
 
-        try (Connection conn = ConexionSupabase.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = ConexionSupabase2.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             
             stmt.setString(1, carritoItem.getIdProducto());
@@ -50,7 +51,7 @@ public class DaoCarritoItem {
         List<carritoitem> lista = new ArrayList<>();
         String sql = "SELECT * FROM carrito";
 
-        try (Connection conn = ConexionSupabase.getConnection(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
+        try (Connection conn = ConexionSupabase2.getConnection(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
 
             while (rs.next()) {
                 carritoitem ci = new carritoitem(
@@ -74,7 +75,7 @@ public class DaoCarritoItem {
         String sql = "SELECT * FROM carrito WHERE iditem = ?";
         carritoitem ci = null;
 
-        try (Connection conn = ConexionSupabase.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = ConexionSupabase2.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, id);
             ResultSet rs = stmt.executeQuery();
@@ -99,7 +100,7 @@ public class DaoCarritoItem {
     public String actualizar(carritoitem carritoItem) {
         String sql = "UPDATE carrito SET idproducto=?, cant=?, total=? WHERE iditem=?";
 
-        try (Connection conn = ConexionSupabase.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = ConexionSupabase2.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, carritoItem.getIdProducto());
             stmt.setInt(2, carritoItem.getCant());
@@ -120,7 +121,7 @@ public class DaoCarritoItem {
     public String eliminar(String id) {
         String sql = "DELETE FROM carrito WHERE iditem = ?";
 
-        try (Connection conn = ConexionSupabase.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = ConexionSupabase2.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, id);
             stmt.executeUpdate();

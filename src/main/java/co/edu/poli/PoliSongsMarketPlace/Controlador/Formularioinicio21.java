@@ -14,7 +14,7 @@ import co.edu.poli.PoliSongsMarketPlace.repositorio.ConexionSupabase2;
 import javafx.scene.control.Alert;
 
 public class Formularioinicio21 {
- 
+
     @FXML
     private TextField Contraseña;
 
@@ -26,29 +26,30 @@ public class Formularioinicio21 {
 
     @FXML
     private TextField Usuario;
-        String nombreUsuario = Usuario.getText().trim();
-        String password = Contraseña.getText().trim();
+
+    //String nombreUsuario = Usuario.getText().trim();
+    //String password = Contraseña.getText().trim();
     @FXML
- void ClickIniciarSesion(ActionEvent event) {
+    void ClickIniciarSesion(ActionEvent event) throws IOException {
         ManagerUsuario managerUsuario = new ManagerUsuario();
         String nombreUsuario = Usuario.getText().trim();
         String password = Contraseña.getText().trim();
-        
+
         // Validar que los campos no estén vacíos
         if (nombreUsuario.isEmpty() || password.isEmpty()) {
             mostrarAlerta("Error", "Por favor, complete todos los campos");
             return;
         }
-        
+
         // Verificar credenciales usando la INSTANCIA de ManagerUsuario
-        boolean credencialesCorrectas=false;
-        
+        boolean credencialesCorrectas = false;
+
         credencialesCorrectas = managerUsuario.verificarLogin(nombreUsuario, password);
-        
+
         if (credencialesCorrectas) {
-            mostrarAlerta("Éxito", "Inicio de sesión exitoso");
-            // Aquí puedes redirigir a la pantalla principal
-            limpiarCampos();
+
+            abrirCatalogo(event);
+
         } else {
             mostrarAlerta("Error", "Usuario o contraseña incorrectos");
             // Limpiar solo el campo de contraseña para nuevo intento
@@ -68,7 +69,8 @@ public class Formularioinicio21 {
         stage.show();
 
     }
-     private void mostrarAlerta(String titulo, String mensaje) {
+
+    private void mostrarAlerta(String titulo, String mensaje) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(titulo);
         alert.setHeaderText(null);
@@ -79,6 +81,17 @@ public class Formularioinicio21 {
     private void limpiarCampos() {
         Usuario.clear();
         Contraseña.clear();
+    }
+    
+    void abrirCatalogo(ActionEvent event) throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("/co/edu/poli/PoliSongsMarketPlace/Vista/Catalogo.fxml"));
+
+        // Obtener la ventana actual
+        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+
+        // Cambiar la escena
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
 }

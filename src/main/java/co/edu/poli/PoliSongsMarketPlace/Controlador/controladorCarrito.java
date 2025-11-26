@@ -74,8 +74,8 @@ public class controladorCarrito implements Initializable {
     }
 
     private void configurarColumnas() {
-        columItem.setCellValueFactory(new PropertyValueFactory<>("iditem"));
-        columIdproducto.setCellValueFactory(new PropertyValueFactory<>("idproducto"));
+        columItem.setCellValueFactory(new PropertyValueFactory<>("idItem"));
+        columIdproducto.setCellValueFactory(new PropertyValueFactory<>("idProducto"));
         columCant.setCellValueFactory(new PropertyValueFactory<>("cant"));
         columPrecio.setCellValueFactory(new PropertyValueFactory<>("total"));
     }
@@ -110,7 +110,7 @@ public class controladorCarrito implements Initializable {
 
     @FXML
     void clickIrAPagar(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("procesoPago.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/co/edu/poli/PoliSongsMarketPlace/Vista/procesoPago.fxml"));
 
         // Obtener la ventana actual
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
@@ -122,7 +122,7 @@ public class controladorCarrito implements Initializable {
 
     @FXML
     void clickVolver(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("Catalogo.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/co/edu/poli/PoliSongsMarketPlace/Vista/Catalogo.fxml"));
 
         // Obtener la ventana actual
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
@@ -165,7 +165,7 @@ public class controladorCarrito implements Initializable {
         for (carritoitem v : carrito.getItems()) {
             total += v.getTotal();
         }
-        cantTotal.setText(String.valueOf(total));
+        TotalCarrito.setText(String.valueOf(total));
 
     }
 

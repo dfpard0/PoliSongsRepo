@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import co.edu.poli.PoliSongsMarketPlace.Managers.*;
+import co.edu.poli.PoliSongsMarketPlace.repositorio.ConexionSupabase2;
 import java.util.ArrayList;
 import java.util.List;
 /**
@@ -23,7 +24,7 @@ public class DaoProductoVinilo {
     public String insertar(productovinilo productoVinilo) {
         String sql = "INSERT INTO productovinilo (idproductovini, titulo, autor, cantidad, precio) VALUES (?, ?, ?, ?, ?)";
 
-        try (Connection conn = ConexionSupabase.getConnection();
+        try (Connection conn = ConexionSupabase2.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, productoVinilo.getIdProductoVini());
@@ -48,7 +49,7 @@ public class DaoProductoVinilo {
         List<productovinilo> lista = new ArrayList<>();
         String sql = "SELECT * FROM productovinilo";
 
-        try (Connection conn = ConexionSupabase.getConnection();
+        try (Connection conn = ConexionSupabase2.getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
 
@@ -75,7 +76,7 @@ public class DaoProductoVinilo {
         String sql = "SELECT * FROM productovinilo WHERE idproductovini = ?";
         productovinilo pv = null;
 
-        try (Connection conn = ConexionSupabase.getConnection();
+        try (Connection conn = ConexionSupabase2.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, id);
@@ -103,7 +104,7 @@ public class DaoProductoVinilo {
         String sql = "SELECT * FROM productovinilo WHERE titulo = ?";
         productovinilo pv = null;
 
-        try (Connection conn = ConexionSupabase.getConnection();
+        try (Connection conn = ConexionSupabase2.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, titulo);
@@ -130,7 +131,7 @@ public class DaoProductoVinilo {
     public String actualizar(productovinilo productoVinilo) {
         String sql = "UPDATE productovinilo SET titulo=?, autor=?, cantidad=?, precio=? WHERE idproductovini=?";
 
-        try (Connection conn = ConexionSupabase.getConnection();
+        try (Connection conn = ConexionSupabase2.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, productoVinilo.getTitulo());
@@ -153,7 +154,7 @@ public class DaoProductoVinilo {
     public String actualizarStock(String idProductoVini, int nuevoStock) {
         String sql = "UPDATE productovinilo SET cantidad=? WHERE idproductovini=?";
 
-        try (Connection conn = ConexionSupabase.getConnection();
+        try (Connection conn = ConexionSupabase2.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, nuevoStock);
@@ -173,7 +174,7 @@ public class DaoProductoVinilo {
     public String eliminar(String id) {
         String sql = "DELETE FROM productovinilo WHERE idproductovini = ?";
 
-        try (Connection conn = ConexionSupabase.getConnection();
+        try (Connection conn = ConexionSupabase2.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, id);
@@ -191,7 +192,7 @@ public class DaoProductoVinilo {
     public boolean verificarStock(String idProductoVini, int cantidadRequerida) {
         String sql = "SELECT cantidad FROM productovinilo WHERE idproductovini = ?";
         
-        try (Connection conn = ConexionSupabase.getConnection();
+        try (Connection conn = ConexionSupabase2.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, idProductoVini);

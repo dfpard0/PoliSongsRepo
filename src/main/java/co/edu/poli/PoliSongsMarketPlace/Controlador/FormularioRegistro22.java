@@ -2,20 +2,15 @@ package co.edu.poli.PoliSongsMarketPlace.Controlador;
 
 import co.edu.poli.PoliSongsMarketPlace.Managers.ManagerUsuario;
 import co.edu.poli.PoliSongsMarketPlace.modelo.Usuario;
-import co.edu.poli.PoliSongsMarketPlace.repositorio.ConexionSupabase2;
-import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import java.sql.Connection;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class FormularioRegistro22 {
-
-    
 
     @FXML
     private TextField CorreoElectronico;
@@ -28,7 +23,6 @@ public class FormularioRegistro22 {
 
     @FXML
     private TextField NombreUsuario;
-    
 
     @FXML
     private TextField Password1;
@@ -36,13 +30,8 @@ public class FormularioRegistro22 {
     @FXML
     private TextField Password2;
 
-    
-
-    private ManagerUsuario usuarioManager;
-
-    public void setConnection(ConexionSupabase2 ConexionSupabase2) {
-        this.usuarioManager = new ManagerUsuario(ConexionSupabase2);
-    }
+    // MANAGER 🚀
+    private ManagerUsuario usuarioManager = new ManagerUsuario();
 
     @FXML
     void ClickGuardarUsuario(ActionEvent event) {
@@ -63,9 +52,9 @@ public class FormularioRegistro22 {
         usuario.setNombreUsuario(NombreUsuario.getText());
         usuario.setCorreoElectronico(CorreoElectronico.getText());
         usuario.setPassword(pass2);
-        
 
         boolean exito = usuarioManager.registrarUsuario(usuario);
+
         if (exito) {
             mostrarAlerta("Éxito", "Usuario registrado correctamente.");
         } else {
@@ -74,15 +63,21 @@ public class FormularioRegistro22 {
     }
     
     @FXML
-    void ClickVolver(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/co/edu/poli/PoliSongsMarketPlace/Vista/MenuInicio1.fxml"));
+    void ClickVolver(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource(
+                "/co/edu/poli/PoliSongsMarketPlace/Vista/MenuInicio1.fxml"
+            ));
 
-        // Obtener la ventana actual
-        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
 
-        // Cambiar la escena
-        stage.setScene(new Scene(root));
-        stage.show();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (Exception e) {
+            mostrarAlerta("Error", "No se pudo cargar la pantalla anterior.");
+            e.printStackTrace();
+        }
     }
 
     private void mostrarAlerta(String titulo, String mensaje) {

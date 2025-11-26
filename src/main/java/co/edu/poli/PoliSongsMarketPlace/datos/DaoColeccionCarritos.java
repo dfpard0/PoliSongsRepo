@@ -8,6 +8,7 @@ import co.edu.poli.PoliSongsMarketPlace.repositorio.ConexionSupabase;
 import co.edu.poli.PoliSongsMarketPlace.negocio.UsuarioManager;
 import java.sql.Connection;
 import co.edu.poli.PoliSongsMarketPlace.Managers.*;
+import co.edu.poli.PoliSongsMarketPlace.repositorio.ConexionSupabase2;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -28,7 +29,7 @@ public class DaoColeccionCarritos {
     public String insertar(coleccionCarritos carrito) {
         String sql = "INSERT INTO coleccioncarrito (cant, total) VALUES (?, ?)";
 
-        try (Connection conn = ConexionSupabase.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = ConexionSupabase2.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, carrito.getCantTotal());
             stmt.setInt(2, carrito.getTotal());
@@ -46,7 +47,7 @@ public class DaoColeccionCarritos {
         List<coleccionCarritos> lista = new ArrayList<>();
         String sql = "SELECT * FROM coleccioncarritos";
 
-        try (Connection conn = ConexionSupabase.getConnection(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
+        try (Connection conn = ConexionSupabase2.getConnection(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
 
             while (rs.next()) {
                 coleccionCarritos c = new coleccionCarritos(
@@ -69,7 +70,7 @@ public class DaoColeccionCarritos {
         String sql = "SELECT * FROM coleccioncarritos WHERE idcarrito = ?";
         coleccionCarritos c = null;
 
-        try (Connection conn = ConexionSupabase.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = ConexionSupabase2.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, id);
             ResultSet rs = stmt.executeQuery();
@@ -93,7 +94,7 @@ public class DaoColeccionCarritos {
     public String actualizar(coleccionCarritos carrito) {
         String sql = "UPDATE coleccioncarritos SET cant=?, precio=? WHERE idcarrito=?";
 
-        try (Connection conn = ConexionSupabase.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = ConexionSupabase2.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, carrito.getCantTotal());
             stmt.setInt(2, carrito.getTotal());
@@ -112,7 +113,7 @@ public class DaoColeccionCarritos {
     public String eliminar(int id) {
         String sql = "DELETE FROM coleccioncarritos WHERE idcarrito = ?";
 
-        try (Connection conn = ConexionSupabase.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = ConexionSupabase2.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, id);
             stmt.executeUpdate();

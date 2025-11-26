@@ -45,7 +45,7 @@ public class controladorPago {
 
     @FXML
     void clickVerCarrito(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("carritodecompras.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/co/edu/poli/PoliSongsMarketPlace/Vista/carritodecompras.fxml"));
 
         // Obtener la ventana actual
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
@@ -58,7 +58,7 @@ public class controladorPago {
 
     @FXML
     void clickVolver(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("carritodecompras.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/co/edu/poli/PoliSongsMarketPlace/Vista/carritodecompras.fxml"));
 
         // Obtener la ventana actual
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
