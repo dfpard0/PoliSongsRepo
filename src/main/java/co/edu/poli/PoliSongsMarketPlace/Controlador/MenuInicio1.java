@@ -5,6 +5,7 @@
 package co.edu.poli.PoliSongsMarketPlace.Controlador;
 
  
+import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -36,14 +37,16 @@ public class MenuInicio1 {
 
     @FXML
     void registro(ActionEvent event)throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FormularioRegistro22.fxml"));
+        try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/poli/PoliSongsMarketPlace/Vista/FormularioRegistro22.fxml"));
+        Parent root = loader.load();
 
-        // Obtener la ventana actual
-        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-
-        // Cambiar la escena
+        Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.show();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
     }
 
 }
