@@ -84,8 +84,14 @@
                   </Label>
                   <ComboBox fx:id="TipoTarjeta" layoutX="297.0" layoutY="181.0" prefHeight="26.0" prefWidth="309.0" />
                   <ComboBox fx:id="redPago" layoutX="298.0" layoutY="120.0" prefHeight="26.0" prefWidth="309.0" />
-                  <TextField fx:id="total" layoutX="297.0" layoutY="237.0" prefHeight="26.0" prefWidth="311.0" />
-                  <Label layoutX="118.0" layoutY="239.0" prefHeight="22.0" prefWidth="66.0" text="TOTAL" textFill="#0f385a">
+                  <TextField fx:id="total" layoutX="298.0" layoutY="295.0" prefHeight="26.0" prefWidth="311.0" />
+                  <Label layoutX="118.0" layoutY="297.0" prefHeight="22.0" prefWidth="66.0" text="TOTAL" textFill="#0f385a">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="numTarjeta" layoutX="296.0" layoutY="231.0" prefHeight="26.0" prefWidth="311.0" />
+                  <Label layoutX="110.0" layoutY="233.0" text="NO. TARJETA " textFill="#0f385a">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>

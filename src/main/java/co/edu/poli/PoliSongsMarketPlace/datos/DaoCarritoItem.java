@@ -134,4 +134,20 @@ public class DaoCarritoItem {
         }
     }
 
+    
+    public String eliminarTodo() {
+        String sql = "DELETE FROM carrito ";
+
+        try (Connection conn = ConexionSupabase2.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            
+            stmt.executeUpdate();
+            return("✅ Item de carrito eliminado correctamente");
+            
+
+        } catch (SQLException e) {
+            return("❌ Error al eliminar item de carrito: " + e.getMessage());
+            
+        }
+    }
 }

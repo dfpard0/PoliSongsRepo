@@ -110,12 +110,11 @@ public class DaoColeccionCarritos {
     }
 
     // Eliminar carrito
-    public String eliminar(int id) {
-        String sql = "DELETE FROM coleccioncarritos WHERE idcarrito = ?";
+    public String eliminar() {
+        String sql = "DELETE FROM coleccioncarritos";
 
         try (Connection conn = ConexionSupabase2.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setInt(1, id);
             stmt.executeUpdate();
             return ("✅ Carrito eliminado correctamente");
 
@@ -125,4 +124,25 @@ public class DaoColeccionCarritos {
         }
     }
 
+    public coleccionCarritos obtenerUltimoRegistro() {
+        String sql = "SELECT * FROM coleccioncarritos ORDER BY idcarrito DESC LIMIT 1";
+        coleccionCarritos car = null;
+
+        try (Connection conn = ConexionSupabase.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
+
+            if (rs.next()) {
+                car = new coleccionCarritos(
+                        rs.getInt("idcarrto"),
+                        rs.getInt("cant"),
+                        rs.getInt("total")
+                );
+            }
+
+        } catch (SQLException e) {
+            System.out.println("❌ Error al obtener último registro: " + e.getMessage());
+        }
+
+        return car;
+    }
 }
+

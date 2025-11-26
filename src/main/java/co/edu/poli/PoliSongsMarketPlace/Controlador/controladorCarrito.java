@@ -1,8 +1,10 @@
 package co.edu.poli.PoliSongsMarketPlace.controlador;
 
 import co.edu.poli.PoliSongsMarketPlace.Managers.carritoitem;
+import co.edu.poli.PoliSongsMarketPlace.Managers.coleccionCarritos;
 import co.edu.poli.PoliSongsMarketPlace.Managers.productovinilo;
 import co.edu.poli.PoliSongsMarketPlace.datos.DaoCarritoItem;
+import co.edu.poli.PoliSongsMarketPlace.datos.DaoColeccionCarritos;
 import co.edu.poli.PoliSongsMarketPlace.datos.DaoProductoVinilo;
 import java.io.IOException;
 import java.net.URL;
@@ -110,6 +112,15 @@ public class controladorCarrito implements Initializable {
 
     @FXML
     void clickIrAPagar(ActionEvent event) throws IOException {
+        DaoColeccionCarritos colec = new DaoColeccionCarritos();
+        int cntto = Integer.parseInt(cantTotal.getText());
+        int tot = Integer.parseInt(TotalCarrito.getText());
+        int id = 2;
+        
+        coleccionCarritos coleccar = new coleccionCarritos(id, cntto, tot);        
+        colec.insertar(coleccar);
+        
+        
         Parent root = FXMLLoader.load(getClass().getResource("/co/edu/poli/PoliSongsMarketPlace/Vista/procesoPago.fxml"));
 
         // Obtener la ventana actual
@@ -118,6 +129,8 @@ public class controladorCarrito implements Initializable {
         // Cambiar la escena
         stage.setScene(new Scene(root));
         stage.show();
+        
+        
     }
 
     @FXML

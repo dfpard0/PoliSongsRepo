@@ -136,7 +136,7 @@ public class controladorCatalogo implements Initializable {
 
     @FXML
     void clickIrAPagar(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("procesoPago.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/co/edu/poli/PoliSongsMarketPlace/Vista/procesoPago.fxml"));
 
         // Obtener la ventana actual
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
