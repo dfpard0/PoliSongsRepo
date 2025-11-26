@@ -3,7 +3,7 @@ package co.edu.poli.PoliSongsMarketPlace.modelo;
 
 
 public class InicioSesion {
-        private String usuario;
+    private String usuario;
     private String contrasena;
 
     public InicioSesion(String usuario, String contrasena) {
